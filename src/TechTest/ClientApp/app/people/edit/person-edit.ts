@@ -16,7 +16,9 @@ export class PersonEdit {
   private routerConfig: RouteConfig;
 
   async activate(params, routerConfig: RouteConfig) {
-    this.routerConfig = routerConfig;
+      this.routerConfig = routerConfig;
+
+      
 
     const personResponse = await this.http.fetch(`/people/${params.id}`);
     this.personFetched(await personResponse.json());
@@ -35,16 +37,34 @@ export class PersonEdit {
     return favouriteColour.id === checkBoxColour.id;
   }
 
-  async submit() {
+    async submit() {
 
-    // TODO: Step 7
-    //
     // Implement the submit and save logic.
     // Send a JSON request to the API with the newly updated
     // this.person object. If the response is successful then
-    // the user should be navigated to the list page.
+      // the user should be navigated to the list page.
 
-    throw new Error('Not Implemented');
+      /// fetch a reponse from /people/{id}
+      /// give the body of the request as the json of this.person
+      var personUpdate = await this.http.fetch(`/people/${this.person.id}`, {
+        headers: { 
+            'Accept': 'application/json',
+            'Content-Type': 'application/json' 
+        },
+        method: "PUT",
+        body: JSON.stringify(this.person)
+        });
+
+      /// the new status of the response is 200
+      /// naivate to the list page
+      /// otherwise throw an error and do nothing else
+      if (personUpdate.status == 200) {
+          this.router.navigate('people');
+      } else {
+          throw new Error('Unable to update');
+      }
+
+    
   }
 
   cancel() {

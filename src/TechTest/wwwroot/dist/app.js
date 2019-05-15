@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "80d74337993b08ec771e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7a35397fc553328a9442"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -21146,13 +21146,29 @@ let PersonEdit = class PersonEdit {
         return favouriteColour.id === checkBoxColour.id;
     }
     async submit() {
-        // TODO: Step 7
-        //
         // Implement the submit and save logic.
         // Send a JSON request to the API with the newly updated
         // this.person object. If the response is successful then
         // the user should be navigated to the list page.
-        throw new Error('Not Implemented');
+        /// fetch a reponse from /people/{id}
+        /// give the body of the request as the json of this.person
+        var personUpdate = await this.http.fetch(`/people/${this.person.id}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "PUT",
+            body: JSON.stringify(this.person)
+        });
+        /// the new status of the response is 200
+        /// naivate to the list page
+        /// otherwise throw an error and do nothing else
+        if (personUpdate.status == 200) {
+            this.router.navigate('people');
+        }
+        else {
+            throw new Error('Unable to update');
+        }
     }
     cancel() {
         this.router.navigate('people');
@@ -21223,7 +21239,7 @@ PeopleList = __decorate([
 /***/ "app/people/list/people-list.html":
 /***/ (function(module, exports) {
 
-module.exports = "<template>\r\n\r\n    <h2 class=\"title\">${heading}</h2>\r\n    <table class=\"table is-striped is-fullwidth\">\r\n        <thead>\r\n            <tr>\r\n                <th>Name</th>\r\n                <th>Palindrome</th>\r\n                <th>Authorised</th>\r\n                <th>Enabled</th>\r\n                <th>Colours</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n\r\n            <!--\r\n              TODO: Step 6\r\n              Add styles to Palindrome, Authorised and Enabled values.\r\n              When the value is Yes the text colour should be Green.\r\n              When the value is No the text colour should be Red.\r\n            -->\r\n\r\n            <tr repeat.for=\"person of people\" person.bind=\"person\">\r\n                <td><a class=\"is-link\" href=\"/people/${person.id}\">${person.fullName}</a></td>\r\n                <td><div style=\"color: ${person.palindrome ? 'green' : 'red'}\">${person.palindrome ? 'Yes' : 'No'}</div></td>\r\n                <td><div style=\"color: ${person.authorised ? 'green' : 'red'}\">${person.authorised ? 'Yes' : 'No'}</div></td>\r\n                <td><div style=\"color: ${person.enabled ? 'green' : 'red'}\">${person.enabled ? 'Yes' : 'No'}</div></td>\r\n                <td>${person.colours | colourNames }</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</template>\n";
+module.exports = "<template>\r\n\r\n    <h2 class=\"title\">${heading}</h2>\r\n    <table class=\"table is-striped is-fullwidth\">\r\n        <thead>\r\n            <tr>\r\n                <th>Name</th>\r\n                <th>Palindrome</th>\r\n                <th>Authorised</th>\r\n                <th>Enabled</th>\r\n                <th>Colours</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n\r\n            <!--\r\n              Add styles to Palindrome, Authorised and Enabled values.\r\n              When the value is Yes the text colour should be Green.\r\n              When the value is No the text colour should be Red.\r\n            -->\r\n\r\n            <tr repeat.for=\"person of people\" person.bind=\"person\">\r\n                <td><a class=\"is-link\" href=\"/people/${person.id}\">${person.fullName}</a></td>\r\n                <td><div style=\"color: ${person.palindrome ? 'green' : 'red'}\">${person.palindrome ? 'Yes' : 'No'}</div></td>\r\n                <td><div style=\"color: ${person.authorised ? 'green' : 'red'}\">${person.authorised ? 'Yes' : 'No'}</div></td>\r\n                <td><div style=\"color: ${person.enabled ? 'green' : 'red'}\">${person.enabled ? 'Yes' : 'No'}</div></td>\r\n                <td>${person.colours | colourNames }</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</template>\n";
 
 /***/ }),
 
