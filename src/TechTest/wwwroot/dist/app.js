@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "7a35397fc553328a9442"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "722219b920286af7dda3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -9188,6 +9188,8 @@ class Person {
         return `${this.firstName} ${this.lastName}`;
     }
     get palindrome() {
+        // TODO: Step 5
+        //
         // Implement the palindrome computed field.
         // True should be returned When the FullName is spelt the same
         // forwards as it is backwards. The match should ignore any
@@ -21239,7 +21241,7 @@ PeopleList = __decorate([
 /***/ "app/people/list/people-list.html":
 /***/ (function(module, exports) {
 
-module.exports = "<template>\r\n\r\n    <h2 class=\"title\">${heading}</h2>\r\n    <table class=\"table is-striped is-fullwidth\">\r\n        <thead>\r\n            <tr>\r\n                <th>Name</th>\r\n                <th>Palindrome</th>\r\n                <th>Authorised</th>\r\n                <th>Enabled</th>\r\n                <th>Colours</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n\r\n            <!--\r\n              Add styles to Palindrome, Authorised and Enabled values.\r\n              When the value is Yes the text colour should be Green.\r\n              When the value is No the text colour should be Red.\r\n            -->\r\n\r\n            <tr repeat.for=\"person of people\" person.bind=\"person\">\r\n                <td><a class=\"is-link\" href=\"/people/${person.id}\">${person.fullName}</a></td>\r\n                <td><div style=\"color: ${person.palindrome ? 'green' : 'red'}\">${person.palindrome ? 'Yes' : 'No'}</div></td>\r\n                <td><div style=\"color: ${person.authorised ? 'green' : 'red'}\">${person.authorised ? 'Yes' : 'No'}</div></td>\r\n                <td><div style=\"color: ${person.enabled ? 'green' : 'red'}\">${person.enabled ? 'Yes' : 'No'}</div></td>\r\n                <td>${person.colours | colourNames }</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</template>\n";
+module.exports = "<template>\r\n\r\n    <h2 class=\"title\">${heading}</h2>\r\n    <table class=\"table is-striped is-fullwidth\">\r\n        <thead>\r\n            <tr>\r\n                <th>Name</th>\r\n                <th>Palindrome</th>\r\n                <th>Authorised</th>\r\n                <th>Enabled</th>\r\n                <th>Colours</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n\r\n            <!--\r\n              TODO: Step 6\r\n              Add styles to Palindrome, Authorised and Enabled values.\r\n              When the value is Yes the text colour should be Green.\r\n              When the value is No the text colour should be Red.\r\n            -->\r\n\r\n            <tr repeat.for=\"person of people\" person.bind=\"person\">\r\n                <td><a class=\"is-link\" href=\"/people/${person.id}\">${person.fullName}</a></td>\r\n                <td><div style=\"color: ${person.palindrome ? 'green' : 'red'}\">${person.palindrome ? 'Yes' : 'No'}</div></td>\r\n                <td><div style=\"color: ${person.authorised ? 'green' : 'red'}\">${person.authorised ? 'Yes' : 'No'}</div></td>\r\n                <td><div style=\"color: ${person.enabled ? 'green' : 'red'}\">${person.enabled ? 'Yes' : 'No'}</div></td>\r\n                <td>${person.colours | colourNames }</td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</template>\n";
 
 /***/ }),
 
@@ -21250,6 +21252,8 @@ module.exports = "<template>\r\n\r\n    <h2 class=\"title\">${heading}</h2>\r\n 
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 class ColourNamesValueConverter {
     toView(colours) {
+        // TODO: Step 4
+        //
         // Implement the value converter function.
         // Using the colours parameter, convert the list into a comma
         // separated string of colour names. The names should be sorted

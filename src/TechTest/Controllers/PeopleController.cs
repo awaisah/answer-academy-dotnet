@@ -19,6 +19,8 @@ namespace TechTest.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
+            // TODO: Step 1
+            //
             // Implement a JSON endpoint that returns the full list
             // of people from the PeopleRepository. If there are zero
             // people returned from PeopleRepository then an empty
@@ -34,6 +36,8 @@ namespace TechTest.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
+            // TODO: Step 2
+            //
             // Implement a JSON endpoint that returns a single person
             // from the PeopleRepository based on the id parameter.
             // If null is returned from the PeopleRepository with
@@ -58,6 +62,8 @@ namespace TechTest.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, PersonUpdate personUpdate)
         {
+            // TODO: Step 3
+            //
             // Implement an endpoint that receives a JSON object to
             // update a person using the PeopleRepository based on
             // the id parameter. Once the person has been successfully
